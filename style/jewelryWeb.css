@@ -4,11 +4,17 @@
 }
 
 .sale_cell{
+    border-style: solid;
+    border-width: 2px;
+    border-color:rgb(224, 224, 224);
+    display: grid;
+    row-gap: 10px;
     width: 220px;
-    height: 360px;
-    border: 5px solid red;
-    align-items: center;
-
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    
+    padding-bottom: 10px;
+    place-items: center;
 }
 
 .img_c1{
@@ -27,7 +33,9 @@ button{
     margin-left: 35%;
 }
 
-.JewelryName{}
+.JewelryName{
+    font-family: 'Lato';
+}
 
 .JewelryPrice{
     font-family: 'Lato';
@@ -35,16 +43,18 @@ button{
 }
 
 .buttonbox{
-    border: 1px solid blue;
-    display: flex;
-    justify-content: center;
-    width: 220px;
-    height: 50px;
+    
 }
 .addtocart{
-    display:block;
+    margin-left:0px;
     background-color: black;
     border:none;
     color: white;
-    width: 220px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+    
+    
 }
