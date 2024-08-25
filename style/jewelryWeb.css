@@ -4,6 +4,7 @@
 }
 body{
     margin: 0;
+    background-color: rgb(237, 237, 237);
 }
 
 .header{
@@ -15,6 +16,14 @@ body{
     justify-content: space-between;
     align-items: center;
     height: 60px;
+    position:fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background-color: white;
+    border-right: none;
+    flex-shrink: 0;
+
 }
 
 .header_logo{
@@ -22,10 +31,21 @@ body{
 
 }
 
+.logo_button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+
 .img_logo{
-    height: 50px;
+    height: 60px;
     object-fit:cover ;
-    width: 50px;
+    width: 60px;
+    position: absolute;
+    top:0;
+    left:0;
 }
 
 .header_neviBar{
@@ -68,32 +88,77 @@ form {
 
 
 
+
 .header_cart{
     background-color: lightpink;
+    
 }
+.cart_Button{
+    cursor: pointer;
+}
+
+.cart_Button .tooltip{
+    position: absolute;
+    background-color: gray;
+    color:white;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    top: 64px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+.cart_Button:hover .tooltip{
+    opacity: 1;
+}
+
 
 .cart_icon{
     width: 40px;
     object-fit: cover;
-    
+    position: fixed;
+    right: 0px;
+    top : 10px;
+}
+.cart_num{
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    background-color: red;
+    color:white;
+    width: 18px;
+    height:18px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.sale_grid{
+    margin-top: 100px;
+    margin-left:20px;
+    margin-right:20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 10px;
 }
 
 .sale_cell{
+    
     border-style: solid;
     border-width: 2px;
     border-color:rgb(224, 224, 224);
     display: grid;
     row-gap: 10px;
-    width: 220px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    
+    width: 260px;
     padding-bottom: 10px;
     place-items: center;
 }
 
 .img_c1{
-    width: 220px;
+    width: 259px;
     height: 220px;
     border: 1px solid blue;
     object-fit: cover;
@@ -125,11 +190,11 @@ button{
     background-color: black;
     border:none;
     color: white;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
     cursor: pointer;
-    
+    position:static;
     
 }
