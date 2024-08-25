@@ -2,6 +2,50 @@
     font-family: 'Lato';
     src: url('font/Lato-Black.ttf');
 }
+body{
+    margin: 0;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.header_logo{
+    background-color: lightblue;
+
+}
+
+.img_logo{
+    height: 50px;
+    object-fit:cover ;
+    width: 50px;
+}
+
+.header_neviBar{
+    background-color: lightpink;
+}
+.header_searchBar{
+    background-color: lightblue;
+    flex: 1;
+    margin-left: 70px;
+    margin-right: 35px;
+    max-width: 400px;
+}
+.searchBar{
+    
+}
+
+
+.header_cart{
+    background-color: lightpink;
+}
 
 .sale_cell{
     border-style: solid;
