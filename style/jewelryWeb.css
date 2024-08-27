@@ -4,6 +4,7 @@
 }
 body{
     margin: 0;
+    background-color: rgb(237, 237, 237);
 }
 
 .header{
@@ -15,6 +16,14 @@ body{
     justify-content: space-between;
     align-items: center;
     height: 60px;
+    position:fixed;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    background-color: white;
+    border-right: none;
+    flex-shrink: 0;
+
 }
 
 .header_logo{
@@ -22,47 +31,134 @@ body{
 
 }
 
+.logo_button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+
+
 .img_logo{
-    height: 50px;
+    height: 60px;
     object-fit:cover ;
-    width: 50px;
+    width: 60px;
+    position: absolute;
+    top:0;
+    left:0;
 }
 
 .header_neviBar{
     background-color: lightpink;
 }
 .header_searchBar{
-    background-color: lightblue;
     flex: 1;
     margin-left: 70px;
     margin-right: 35px;
     max-width: 400px;
 }
+
+form {
+
+    color: #555;
+    display: flex;
+    padding: 2px;
+    border: 1px solid currentColor;
+    border-radius: 5px;
+  }
 .searchBar{
-    
+    width: 100%;
+    border: none;
+    margin: 0;
+    height: 30px;
 }
+
+.submitButton{
+    padding: 0;
+    margin-left: 0;
+    text-indent: -999px;
+    overflow: hidden;
+    width: 40px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    opacity: 0.7;
+    background: transparent url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' class='bi bi-search' viewBox='0 0 16 16'%3E%3Cpath d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z'%3E%3C/path%3E%3C/svg%3E") no-repeat center;
+}
+
+
+
 
 
 .header_cart{
     background-color: lightpink;
+    
+}
+.cart_Button{
+    cursor: pointer;
+}
+
+.cart_Button .tooltip{
+    position: absolute;
+    background-color: gray;
+    color:white;
+    padding: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    top: 64px;
+    right: 10px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+.cart_Button:hover .tooltip{
+    opacity: 1;
+}
+
+
+.cart_icon{
+    width: 40px;
+    object-fit: cover;
+    position: fixed;
+    right: 0px;
+    top : 10px;
+}
+.cart_num{
+    position: absolute;
+    top: 4px;
+    right: 0px;
+    background-color: red;
+    color:white;
+    width: 18px;
+    height:18px;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.sale_grid{
+    margin-top: 100px;
+    margin-left:20px;
+    margin-right:20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 20px;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 10px;
 }
 
 .sale_cell{
+    
     border-style: solid;
     border-width: 2px;
     border-color:rgb(224, 224, 224);
     display: grid;
     row-gap: 10px;
-    width: 220px;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    
+    width: 260px;
     padding-bottom: 10px;
     place-items: center;
 }
 
 .img_c1{
-    width: 220px;
+    width: 259px;
     height: 220px;
     border: 1px solid blue;
     object-fit: cover;
@@ -94,11 +190,11 @@ button{
     background-color: black;
     border:none;
     color: white;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
     cursor: pointer;
-    
+    position:static;
     
 }
