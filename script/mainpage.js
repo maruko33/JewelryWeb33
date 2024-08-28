@@ -1,18 +1,3 @@
-const Products = [{
-    img: 'image/firstclass01.jpg',
-    name: 'A1',
-    price_inCent: 2000,
-    rate: {stars: 5, count: 0}},
-    {img: 'image/firstclass02.jpg',
-    name: 'A2',
-    price_inCent: 1500,
-    rate: {stars: 5, count: 0}},
-    {img: 'image/firstclass03.jpg',
-    name: 'A3',
-    price_inCent: 1500,
-    rate: {stars: 5, count: 0}}
-];
-
 let productsHTML = ``;
 
 
@@ -40,17 +25,36 @@ Products.forEach((Products) => {
                     <p class="JewelryPrice">$${(Products.price_inCent/100).toFixed(2)}</p>
                 </div>
                 <div class="buttonbox">
-                    <button class="addtocart">ADD TO Cart</button>    
+                    <button class="addtocart js-addtocart"
+                    data-product-id="${Products.id}"
+                    >ADD TO Cart</button>    
                 </div>
             </div>
     `;
-    
-    
-    
     productsHTML+=html;
-
 })
 
-console.log(productsHTML);
-
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
+document.querySelectorAll('.js-addtocart').forEach((button) => {
+    button.addEventListener('click', () =>{
+        const productId = button.dataset.productId;
+
+        let matchingitem;
+        cart.forEach((item)=> {
+            if(productId === item.productId){
+                
+                matchingitem = item;
+            }
+        });
+        if(matchingitem){
+            matchingitem.quantity+=1;
+        }else{
+            cart.push({productId: productId,
+                quantity: 1
+            });
+        }
+
+        console.log(cart);
+    })    
+})
