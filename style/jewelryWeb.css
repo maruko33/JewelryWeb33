@@ -4,15 +4,13 @@
 }
 body{
     margin: 0;
-    background-color: rgb(237, 237, 237);
+    background-color: rgb(210, 210, 210);
 }
 
 .header{
     display: flex;
     flex-direction: row;
-    border-width: 1px;
-    border-color: black;
-    border-style: solid;
+
     justify-content: space-between;
     align-items: center;
     height: 60px;
@@ -146,10 +144,9 @@ form {
 }
 
 .sale_cell{
-    
-    border-style: solid;
-    border-width: 2px;
-    border-color:rgb(224, 224, 224);
+
+    background-color: white;
+    border: none;
     display: grid;
     row-gap: 10px;
     width: 260px;
@@ -158,9 +155,8 @@ form {
 }
 
 .img_c1{
-    width: 259px;
+    width: 260px;
     height: 220px;
-    border: 1px solid blue;
     object-fit: cover;
     
 }
