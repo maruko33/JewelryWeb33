@@ -54,7 +54,20 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
                 quantity: 1
             });
         }
+        displayCartQty();
 
         console.log(cart);
+
     })    
 })
+
+
+
+
+function displayCartQty(){
+    let totalQty =0;
+    cart.forEach((item) => {
+        totalQty+=item.quantity;
+    })
+    document.querySelector('.cart_Qty').innerHTML = `${totalQty}`
+}
