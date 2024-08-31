@@ -1,7 +1,6 @@
 let productsHTML = ``;
 
 
-
 Products.forEach((Products) => {
     const html =`
                 <div class="sale_cell">
@@ -24,17 +23,28 @@ Products.forEach((Products) => {
                 <div>
                     <p class="JewelryPrice">$${(Products.price_inCent/100).toFixed(2)}</p>
                 </div>
-                <div class="buttonbox">
-                    <button class="addtocart js-addtocart"
-                    data-product-id="${Products.id}"
-                    >ADD TO Cart</button>    
+                
+                <div class="buttonbox js-buttonbox">
+                    <div class="addedReminderHide">
+                        <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
+                        <div><p class="addedText">Added</p></div>
+                    </div>
+                        <button class="addtocart js-addtocart"
+                        data-product-id="${Products.id}"
+                        >ADD TO Cart</button>    
                 </div>
+
+
+
             </div>
     `;
     productsHTML+=html;
 })
 
+
+
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
+
 
 document.querySelectorAll('.js-addtocart').forEach((button) => {
     button.addEventListener('click', () =>{
@@ -55,13 +65,11 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
             });
         }
         displayCartQty();
-
+        displayAddReminder();
         console.log(cart);
-
+        //reminder: the function displayAddReminder() is not complete
     })    
 })
-
-
 
 
 function displayCartQty(){
@@ -70,4 +78,8 @@ function displayCartQty(){
         totalQty+=item.quantity;
     })
     document.querySelector('.cart_Qty').innerHTML = `${totalQty}`
+}
+
+function displayAddReminder(){
+    const hideHTML = document.querySelector()
 }
