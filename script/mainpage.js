@@ -72,8 +72,6 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
 })
 
 
-
-
 function displayCartQty(){
     let totalQty =0;
     cart.forEach((item) => {
