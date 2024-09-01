@@ -234,10 +234,16 @@ button{
     display: inline-flex;
 }
 
-.addedReminderHide{
+.addedReminder{
     display:flex;
     margin-bottom: 10px;
+    
+}
+.addedReminderHide{
     opacity: 0;
+}
+.addedReminderShow{
+    opacity: 1;
 }
 
 .addedReminderShow{

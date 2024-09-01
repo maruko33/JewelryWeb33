@@ -25,17 +25,16 @@ Products.forEach((Products) => {
                 </div>
                 
                 <div class="buttonbox js-buttonbox">
-                    <div class="addedReminderHide">
-                        <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
-                        <div><p class="addedText">Added</p></div>
+                    <div class="addedReminder js-addedRiminder-${Products.id}">
+                        <div class="addedReminderHide">
+                            <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
+                            <div><p class="addedText">Added</p></div>
+                        </div>
                     </div>
                         <button class="addtocart js-addtocart"
                         data-product-id="${Products.id}"
                         >ADD TO Cart</button>    
                 </div>
-
-
-
             </div>
     `;
     productsHTML+=html;
@@ -65,7 +64,7 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
             });
         }
         displayCartQty();
-        displayAddReminder();
+        displayAddReminder(productId);
         console.log(cart);
         //reminder: the function displayAddReminder() is not complete
     })    
@@ -80,6 +79,30 @@ function displayCartQty(){
     document.querySelector('.cart_Qty').innerHTML = `${totalQty}`
 }
 
-function displayAddReminder(){
-    const hideHTML = document.querySelector()
+const addedMessageTimeouts= {};
+
+function displayAddReminder(productId){
+    const previousTimeID = addedMessageTimeouts[productId];
+    
+    if(previousTimeID){
+        clearTimeout(previousTimeID);
+    }
+
+    document.querySelector(`.js-addedRiminder-${productId}`).innerHTML =`
+    <div class="addedReminderShow">    
+        <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
+        <div><p class="addedText">Added</p></div>
+    </div>` 
+    const currentTimeID =setTimeout(() => {
+        document.querySelector(`.js-addedRiminder-${productId}`).innerHTML =`
+    <div class="addedReminderHide">    
+        <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
+        <div><p class="addedText">Added</p></div>
+    </div>`
+}, 2000);
+
+    
+
+    addedMessageTimeouts[productId] = currentTimeID;
+    
 }
