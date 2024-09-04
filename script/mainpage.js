@@ -1,5 +1,7 @@
 let productsHTML = ``;
 
+import { cart } from "../database/cart.js";
+
 
 Products.forEach((Products) => {
     const html =`
