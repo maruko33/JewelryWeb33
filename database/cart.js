@@ -23,7 +23,7 @@ export function displayCartQty(){
     cart.forEach((cartItem) => {
         totalQty+=cartItem.quantity;
     })
-    document.querySelector('.cart_Qty').innerHTML = `${totalQty}`
+    document.querySelector('.cart_Qty').innerHTML = `${totalQty}`;
 }
 
 const addedMessageTimeouts= {};

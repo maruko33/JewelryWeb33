@@ -52,7 +52,7 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
         const productId = button.dataset.productId;
         cartModule.addToCart(productId); 
         cartModule.displayCartQty();
-        displayAddReminder(productId);
+        cartModule.displayAddReminder(productId);
         console.log(cartModule.cart);
         //reminder: the function displayAddReminder() is not complete
     })    
@@ -62,31 +62,3 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
 
 
 
-
-const addedMessageTimeouts= {};
-
-function displayAddReminder(productId){
-    const previousTimeID = addedMessageTimeouts[productId];
-    
-    if(previousTimeID){
-        clearTimeout(previousTimeID);
-    }
-
-    document.querySelector(`.js-addedRiminder-${productId}`).innerHTML =`
-    <div class="addedReminderShow">    
-        <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
-        <div><p class="addedText">Added</p></div>
-    </div>` 
-    const currentTimeID =setTimeout(() => {
-        document.querySelector(`.js-addedRiminder-${productId}`).innerHTML =`
-    <div class="addedReminderHide">    
-        <div class="goodIconBox"><img class="goodIcon" src="image/goodIcon.png"></div>
-        <div><p class="addedText">Added</p></div>
-    </div>`
-}, 2000);
-
-    
-
-    addedMessageTimeouts[productId] = currentTimeID;
-    
-}

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Lato';
+    src: url('font/Lato-Black.ttf');
+}
+body{
+    margin: 0;
+    background-color: rgb(210, 210, 210);
+}
