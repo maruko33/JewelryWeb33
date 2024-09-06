@@ -1,7 +1,7 @@
+import * as cartModule from "../database/cart.js";
+import { Products } from "../database/products.js";
+
 let productsHTML = ``;
-
-import { cart } from "../database/cart.js";
-
 
 Products.forEach((Products) => {
     const html =`
@@ -50,36 +50,18 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 document.querySelectorAll('.js-addtocart').forEach((button) => {
     button.addEventListener('click', () =>{
         const productId = button.dataset.productId;
-
-        let matchingitem;
-        cart.forEach((item)=> {
-            if(productId === item.productId){
-                
-                matchingitem = item;
-            }
-        });
-        if(matchingitem){
-            matchingitem.quantity+=1;
-        }else{
-            cart.push({productId: productId,
-                quantity: 1
-            });
-        }
-        displayCartQty();
+        cartModule.addToCart(productId); 
+        cartModule.displayCartQty();
         displayAddReminder(productId);
-        console.log(cart);
+        console.log(cartModule.cart);
         //reminder: the function displayAddReminder() is not complete
     })    
 })
 
 
-function displayCartQty(){
-    let totalQty =0;
-    cart.forEach((item) => {
-        totalQty+=item.quantity;
-    })
-    document.querySelector('.cart_Qty').innerHTML = `${totalQty}`
-}
+
+
+
 
 const addedMessageTimeouts= {};
 
