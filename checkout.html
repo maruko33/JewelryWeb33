@@ -20,7 +20,7 @@
             </div>
 
             <div class="checkout-title">
-                <span class="checkout-font">Checkout (<a class="cart-link">0 items</a>)</span>
+                <span class="checkout-font">Checkout (<a class="cart-link" herf="http://localhost:5500/mainpage.html">0 items</a>)</span>
             </div>
 
             <div class="header_cart">
@@ -42,7 +42,7 @@
         <div class="checkout-body">
             <div class="checkout-body-products">
                 <div class="checkout-body-products-cell">
-                    <p>
+                    <p class="delivery-date">
                         order 1
                     </p>
                     <div class="checkout-body-products-cell-box">
@@ -53,27 +53,113 @@
 
                             <div class="checkout-body-products-cell-productInfo-detail">
                                 <div>
-                                    <p>A1</p>
+                                    <p class="JewelryName">A1</p>
                                 </div>
-                                <div>
+                                <div class="JewelryPrice">
                                     price: ?$
                                 </div>
                                 <div>
-                                    quantity: ?
+                                    <span>quantity: ?</span>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Update</a>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Delete</a>
                                 </div>
-                                
                             </div>
                         </div>
 
                         <div class="checkout-body-products-cell-deliveryInfo">
+                            <div>
+                                <p class="title3">Choose a delivery option</p>
+                            </div>
+                                                            
+               
+                                <div class="delivery-type-info-box">
+                                    <div class="container">
+                                        <input type="radio" name="radio">
+                                        
+                                    </div>
+                                    <div>
+                                        <p>Sunday, September 22</p>
+                                        <span class="delivery-type">Free shipping</span>
+                                    </div>
+                                </div>
 
+                                <div class="delivery-type-info-box">
+                                    <div class="container">
+                                        <input type="radio" name="radio">
+                                        
+                                    </div>
+                                    <div>
+                                        <p>Sunday, September 15</p>
+                                        <span class="delivery-type">Fast shipping</span>
+                                    </div>
+                                </div>
+
+                                <div class="delivery-type-info-box">
+                                    <div class="container">
+                                        <input type="radio" name="radio">                                 
+                                    </div>
+                                    <div>
+                                        <p>Tomorrow, September 11 </p>  
+                                        <span class="delivery-type">One Day shipping</span>
+                                    </div>
+                                </div>
+
+                                
                         </div>
                     </div>
                 </div>
                 <div class="checkout-body-products-cell">order 2</div>
             </div>
 
-            <div class="checkout-body-summary">Order Summary</div>
+            <div class="checkout-body-summary-box">
+                <div>
+                    <p class="title2">Order Summary</p>
+                </div>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Item(0):</p>
+                    </div>
+                    <div>
+                        <p>333$</p>
+                    </div>
+                </div>
+            
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Shipping & handling:</p>
+                    </div>
+                    <div>
+                        <p>333$</p>
+                    </div>
+                </div>
+                <br>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Total before tax:</p>
+                    </div>
+                    <div>
+                        <p>333$</p>
+                    </div>
+                </div>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Estimated tax(13%):</p>
+                    </div>
+                    <div>
+                        <p>333$</p>
+                    </div>
+                </div>     
+                <hr>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p class="title2">Order total:</p>
+                    </div>
+                    <div>
+                        <p class="title2">333$</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="placeyourorder">Place your order</button>
+                </div>
+            </div>
         </div>
         <script type="module" src="script/checkout.js"></script>
     </body>

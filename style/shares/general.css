@@ -9,4 +9,36 @@ body{
 
 p{
     margin: 0;
+    font-size: large;
+}
+
+.JewelryName{
+    font-family: 'Lato';
+}
+
+.JewelryPrice{
+    font-family: 'Lato';
+    
+}
+
+.title2{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+.title3{
+    font-weight: bold;
+    font-size: large;
+}
+
+a{
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+    height: 1px; /* Line thickness */
+    background-color: #c5c5c5; /* Line color */
+    width: 90%; /* Line width */
+
 }
