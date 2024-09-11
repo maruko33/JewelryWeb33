@@ -3,6 +3,8 @@ import { Products } from "../database/products.js";
 
 let productsHTML = ``;
 
+cartModule.displayCartQty();
+
 Products.forEach((Products) => {
     const html =`
                 <div class="sale_cell">
