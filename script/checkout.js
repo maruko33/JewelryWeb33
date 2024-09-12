@@ -3,7 +3,13 @@ import { Products } from "../database/products.js";
 const Cart = cartModule.cart;
 cartModule.displayCartQty();
 
-let html =``;
+let producthtml =``;
+let totalItem = 0;
+let totalItemFee =0;
+let totalshippingfee = 0;
+let priceBeforeTax =0;
+let pricAfterTax=0;
+let summaryhtml =``;
 
 Cart.forEach((cartItem) => {
     const productId = cartItem.productId;
@@ -15,9 +21,11 @@ Cart.forEach((cartItem) => {
         }
     })
 
-    console.log(matchingProduct);
-
-    html = `    <div class="checkout-body-products-cell">
+    totalItem+=cartItem.quantity;
+    totalItemFee+=cartItem.quantity*(matchingProduct.price_inCent/100);
+    //totalshippingfee=
+    
+    producthtml += `    <div class="checkout-body-products-cell">
                     <p class="delivery-date">
                         order 1
                     </p>
@@ -35,7 +43,7 @@ Cart.forEach((cartItem) => {
                                     price: ${matchingProduct.price_inCent/100}$
                                 </div>
                                 <div>
-                                    <span>quantity: ?</span>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Update</a>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Delete</a>
+                                    <span>quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Update</a>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Delete</a>
                                 </div>
                             </div>
                         </div>
@@ -81,6 +89,65 @@ Cart.forEach((cartItem) => {
                                 
                         </div>
                     </div>
-                </div>`
+                </div>`;
+
 })
 
+priceBeforeTax = totalItemFee+totalshippingfee;
+pricAfterTax = ((totalItemFee+totalshippingfee)*1.13).toFixed(2);
+
+summaryhtml = `                
+                <div>
+                    <p class="title2">Order Summary</p>
+                </div>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Item(${totalItem}):</p>
+                    </div>
+                    <div>
+                        <p>${totalItemFee}$</p>
+                    </div>
+                </div>
+            
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Shipping & handling:</p>
+                    </div>
+                    <div>
+                        <p>${totalshippingfee}$</p>
+                    </div>
+                </div>
+                <br>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Total before tax:</p>
+                    </div>
+                    <div>
+                        <p>${priceBeforeTax}$</p>
+                    </div>
+                </div>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p>Estimated tax(13%):</p>
+                    </div>
+                    <div>
+                        <p>${pricAfterTax}$</p>
+                    </div>
+                </div>     
+                <hr>
+                <div class="parallel-grid-box">
+                    <div>
+                        <p class="title2">Order total:</p>
+                    </div>
+                    <div>
+                        <p class="title2">${pricAfterTax}$</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="placeyourorder">Place your order</button>
+                </div>
+`;
+
+
+document.querySelector('.checkout-body-products').innerHTML = producthtml;
+document.querySelector('.checkout-body-summary-box').innerHTML = summaryhtml;
