@@ -1,4 +1,12 @@
 export const cart = [
+    {
+        productId: '16985746213',
+        quantity:2
+    },
+    {
+        productId: '13455231158',
+        quantity:1
+    }
 ];
 
 export function addToCart(productId){
