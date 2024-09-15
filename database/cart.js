@@ -61,3 +61,11 @@ export function displayAddReminder(productId){
     addedMessageTimeouts[productId] = currentTimeID;
     
 }
+
+function removeFromCart(productId){
+    cart.forEach((item)=>{
+        if(productId!=item.productId){
+            cart.push(item);
+        }
+    })
+}

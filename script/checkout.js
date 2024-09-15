@@ -44,7 +44,7 @@ Cart.forEach((cartItem) => {
                                     price: ${toolbox.priceAdjust(matchingProduct.price_inCent,2)}$
                                 </div>
                                 <div>
-                                    <span>quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Update</a>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Delete</a>
+                                    <span>quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<span class="js-update-link" >Update</span>&nbsp;&nbsp;&nbsp;<span class="js-delete-link" data-product-id="${matchingProduct.id}">Delete</span>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@ Cart.forEach((cartItem) => {
                
                                 <div class="delivery-type-info-box">
                                     <div class="container">
-                                        <input type="radio" name="delivery-option-${matchingProduct.id}">
+                                        <input type="radio" name="delivery-option-${matchingProduct.id}" >
                                         
                                     </div>
                                     <div>
@@ -150,3 +150,11 @@ summaryhtml = `
 
 document.querySelector('.checkout-body-products').innerHTML = producthtml;
 document.querySelector('.checkout-body-summary-box').innerHTML = summaryhtml;
+
+document.querySelectorAll('.js-delete-link').forEach((link) =>{
+    addEventListener('click', ()=>{
+        const productId = link.dataset.productId;
+        console.log(productId);
+        cartModule.removeFromCart(productId);
+    })
+})
