@@ -1,5 +1,6 @@
 import * as cartModule from "../database/cart.js";
 import { Products } from "../database/products.js";
+import * as toolbox from "./utils/priceAdjuster.js"
 const Cart = cartModule.cart;
 cartModule.displayCartQty();
 
@@ -40,10 +41,10 @@ Cart.forEach((cartItem) => {
                                     <p class="JewelryName">${matchingProduct.name}</p>
                                 </div>
                                 <div class="JewelryPrice">
-                                    price: ${matchingProduct.price_inCent/100}$
+                                    price: ${toolbox.priceAdjust(matchingProduct.price_inCent,2)}$
                                 </div>
                                 <div>
-                                    <span>quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Update</a>&nbsp;&nbsp;&nbsp;<a href="http://localhost:5500/mainpage.html">Delete</a>
+                                    <span>quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<span class="js-update-link" >Update</span>&nbsp;&nbsp;&nbsp;<span class="js-delete-link" data-product-id="${matchingProduct.id}">Delete</span>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +57,7 @@ Cart.forEach((cartItem) => {
                
                                 <div class="delivery-type-info-box">
                                     <div class="container">
-                                        <input type="radio" name="radio">
+                                        <input type="radio" name="delivery-option-${matchingProduct.id}" >
                                         
                                     </div>
                                     <div>
@@ -67,7 +68,7 @@ Cart.forEach((cartItem) => {
 
                                 <div class="delivery-type-info-box">
                                     <div class="container">
-                                        <input type="radio" name="radio">
+                                        <input type="radio" name="delivery-option-${matchingProduct.id}">
                                         
                                     </div>
                                     <div>
@@ -78,15 +79,13 @@ Cart.forEach((cartItem) => {
 
                                 <div class="delivery-type-info-box">
                                     <div class="container">
-                                        <input type="radio" name="radio">                                 
+                                        <input type="radio" name="delivery-option-${matchingProduct.id}">                                 
                                     </div>
                                     <div>
                                         <p>Tomorrow, September 11 </p>  
                                         <span class="delivery-type">One Day shipping</span>
                                     </div>
                                 </div>
-
-                                
                         </div>
                     </div>
                 </div>`;
@@ -94,7 +93,7 @@ Cart.forEach((cartItem) => {
 })
 
 priceBeforeTax = totalItemFee+totalshippingfee;
-pricAfterTax = ((totalItemFee+totalshippingfee)*1.13).toFixed(2);
+pricAfterTax = toolbox.priceAdjust((totalItemFee+totalshippingfee)*113,2);
 
 summaryhtml = `                
                 <div>
@@ -151,3 +150,11 @@ summaryhtml = `
 
 document.querySelector('.checkout-body-products').innerHTML = producthtml;
 document.querySelector('.checkout-body-summary-box').innerHTML = summaryhtml;
+
+document.querySelectorAll('.js-delete-link').forEach((link) =>{
+    addEventListener('click', ()=>{
+        const productId = link.dataset.productId;
+        console.log(productId);
+        cartModule.removeFromCart(productId);
+    })
+})

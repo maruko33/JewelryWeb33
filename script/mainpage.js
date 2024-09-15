@@ -1,5 +1,6 @@
 import * as cartModule from "../database/cart.js";
 import { Products } from "../database/products.js";
+import * as toolbox from "./utils/priceAdjuster.js"
 
 let productsHTML = ``;
 
@@ -25,7 +26,7 @@ Products.forEach((Products) => {
                 </div>
                 
                 <div>
-                    <p class="JewelryPrice">$${(Products.price_inCent/100).toFixed(2)}</p>
+                    <p class="JewelryPrice">$${toolbox.priceAdjust(Products.price_inCent,2)}</p>
                 </div>
                 
                 <div class="buttonbox js-buttonbox">
