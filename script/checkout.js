@@ -1,7 +1,6 @@
 import * as cartModule from "../database/cart.js";
 import { Products } from "../database/products.js";
 import * as toolbox from "./utils/priceAdjuster.js"
-const Cart = cartModule.cart;
 cartModule.displayCartQty();
 
 let producthtml =``;
@@ -12,7 +11,7 @@ let priceBeforeTax =0;
 let pricAfterTax=0;
 let summaryhtml =``;
 
-Cart.forEach((cartItem) => {
+cartModule.cart.forEach((cartItem) => {
     const productId = cartItem.productId;
     let matchingProduct;
 
@@ -152,9 +151,11 @@ document.querySelector('.checkout-body-products').innerHTML = producthtml;
 document.querySelector('.checkout-body-summary-box').innerHTML = summaryhtml;
 
 document.querySelectorAll('.js-delete-link').forEach((link) =>{
-    addEventListener('click', ()=>{
+    
+    link.addEventListener('click', ()=>{
         const productId = link.dataset.productId;
         console.log(productId);
         cartModule.removeFromCart(productId);
+        console.log(cartModule.cart);
     })
 })
