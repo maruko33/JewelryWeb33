@@ -1,4 +1,4 @@
-export const cart = [
+export let cart = [
     {
         productId: '16985746213',
         quantity:2
@@ -62,10 +62,17 @@ export function displayAddReminder(productId){
     
 }
 
-function removeFromCart(productId){
+export function removeFromCart(productId){
+    const newCart = []
     cart.forEach((item)=>{
-        if(productId!=item.productId){
-            cart.push(item);
+        if(productId!==item.productId){
+            newCart.push(item);
+        }else{
+            if(item.quantity>1){
+                item.quantity--;
+                newCart.push(item);
+            }
         }
     })
+    cart = newCart;
 }
