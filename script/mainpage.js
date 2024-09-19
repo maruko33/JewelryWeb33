@@ -58,6 +58,7 @@ document.querySelectorAll('.js-addtocart').forEach((button) => {
         cartModule.displayAddReminder(productId);
         console.log(cartModule.cart);
         //reminder: the function displayAddReminder() is not complete
+        
     })    
 })
 
