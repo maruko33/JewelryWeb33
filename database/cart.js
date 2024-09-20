@@ -76,3 +76,17 @@ export function removeFromCart(productId){
     })
     cart = newCart;
 }
+
+export function IsRemove(productId){
+    let result = false;
+    console.log(cart);
+    cart.forEach((item)=> {
+        if(item.productId === productId){
+            
+            if(item.quantity===1){
+                result = true;
+            }
+        }
+    });
+    return result;
+}
