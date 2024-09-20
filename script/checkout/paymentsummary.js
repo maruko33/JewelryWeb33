@@ -6,6 +6,7 @@ import { deliveryOption } from "../../database/deliveryOptions.js";
 
 let totalItem = 0;
 let totalItemFee =0;
+
 let totalshippingfee = 0;
 let priceBeforeTax =0;
 let pricAfterTax=0;
@@ -26,6 +27,14 @@ export function updatePrice(cart){
                 matchingProduct = product;
             }
         })
+        if(cartItem.deliveryOptionId==="2"){
+            totalshippingfee+=toolbox.priceAdjust(499,2);     
+        }else if(cartItem.deliveryOptionId==="3"){
+            totalshippingfee+= toolbox.priceAdjust(999,2);
+        }else{
+            totalshippingfee+=0;
+        }
+        ;
         totalItem+=cartItem.quantity;
         totalItemFee+=cartItem.quantity*(matchingProduct.price_inCent/100);
         priceBeforeTax = totalItemFee+totalshippingfee;

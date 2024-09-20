@@ -34,7 +34,7 @@ export function displayCheckoutItems(){
         const today = dayjs();
         const deliveryDate = today.add(deliveryOptions, 'day');
         const dateString = deliveryDate.format('YYYY, MMMM DD');
-        //totalshippingfee=
+        
         
         producthtml += `    <div class="checkout-body-products-cell js-cart-item-${matchingProduct.id}">
                         <p class="delivery-date">
@@ -118,6 +118,7 @@ export function displayCheckoutItems(){
             const {productId,deliveryOptionId} = element.dataset;
             cartModule.updateDeliveryOption(productId, deliveryOptionId);
             displayCheckoutItems();
+            updatePrice(cartModule.cart);
         })
     })
 
@@ -128,7 +129,7 @@ export function displayCheckoutItems(){
             const deliveryDate = today.add(deliveryOption.deliveryDays, 'day');
             const dateString = deliveryDate.format('YYYY, MMMM DD');
             const isChecked = deliveryOption.id ===cartItem.deliveryOptionId;
-            const priceString = deliveryOption.priceCent === 0 ? 'FREE' : `$${toolbox.priceAdjust(deliveryOption.priceCent)}`
+            const priceString = deliveryOption.priceCent === 0 ? 'FREE' : `$${toolbox.priceAdjust(deliveryOption.priceCent,2)}`
             html += `
                 <div class="delivery-type-info-box">
                     <div class="container" data-delivery-option-id="${deliveryOption.id}" data-product-id="${matchingProduct.id}">
