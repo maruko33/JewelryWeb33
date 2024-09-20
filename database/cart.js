@@ -41,6 +41,9 @@ export function displayCartQty(){
         totalQty+=cartItem.quantity;
     })
     document.querySelector('.cart_Qty').innerHTML = `${totalQty}`;
+    if(document.querySelector('.cart-link')!=null){
+        document.querySelector('.cart-link').innerHTML =`${totalQty} items`;
+    }
 }
 
 const addedMessageTimeouts= {};
