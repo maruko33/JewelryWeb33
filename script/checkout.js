@@ -47,6 +47,8 @@ function displayHeader(){
 
 }
 
+
+
 function updatePrice(cart){
     totalItem = 0;
     totalItemFee =0;
@@ -73,6 +75,7 @@ function updatePrice(cart){
 }
 
 function displayCheckoutItems(){
+    producthtml =``;
     cartModule.cart.forEach((cartItem) => {
         const productId = cartItem.productId;
         let matchingProduct;
@@ -131,30 +134,81 @@ function displayCheckoutItems(){
     })
     document.querySelector('.checkout-body-products').innerHTML = producthtml;
     cartModule.displayCartQty();
-}
+    
+    document.querySelectorAll('.js-delete-link').forEach((link) =>{
+        
+        link.addEventListener('click', ()=>{
+            const productId = link.dataset.productId;
+            const containerhtml = document.querySelector(`.js-cart-item-${productId}`);
+            if(cartModule.IsRemove(productId)){
+                containerhtml.remove();
+            }
+            cartModule.removeFromCart(productId);
 
-function deliveryOptionsHTML(matchingProduct, cartItem){
-    let html =``;
-    deliveryOption.forEach((deliveryOption)=> {
-        const today = dayjs();
-        const deliveryDate = today.add(deliveryOption.deliveryDays, 'day');
-        const dateString = deliveryDate.format('YYYY, MMMM DD');
-        const isChecked = deliveryOption.id ===cartItem.deliveryOptionId;
-        const priceString = deliveryOption.priceCent === 0 ? 'FREE' : `$${toolbox.priceAdjust(deliveryOption.priceCent)}`
-        html += `
-            <div class="delivery-type-info-box">
-                <div class="container">
-                    <input type="radio" ${isChecked ? 'checked': ''} name="delivery-option-${matchingProduct.id}" >                        
-                </div>
-                <div>
-                    <p>${dateString}</p>
-                    <span class="delivery-type">${priceString} shipping</span>
-                </div>
-            </div>`;
+            updatePrice(cartModule.cart);
+        })
     })
 
-    return html;
+    document.querySelectorAll('.js-update-link').forEach((link) =>{
+    /**
+     *     link.addEventListener('click', ()=>{
+            console.log(link);
+            const productId = link.dataset.productId;
+            const updateHTML = document.querySelector(`.js-update-link-${productId}`);
+            updateHTML.innerHTML = '<input class="quantity-input"type="text"> <span class="save-quantity-link">Save</span>'
+            const input = document.querySelector('.quantity-input');
+            input.focus();
+
+                //need to fix really need to fix please fix this
+                document.querySelector('.save-quantity-link').addEventListener('click', ()=>{
+                    console.log("got it");
+                    console.log(input.value);
+                    cartModule.changeQuantity(productId, input.value);
+        
+                    updatePrice(cartModule.cart);
+                })
+
+
+            
+
+            
+        })
+    *  */    
+    })
+
+    document.querySelectorAll('.container').forEach((element) =>{
+        element.addEventListener('click',() => {
+            const {productId,deliveryOptionId} = element.dataset;
+            cartModule.updateDeliveryOption(productId, deliveryOptionId);
+            displayCheckoutItems();
+        })
+    })
+
+    function deliveryOptionsHTML(matchingProduct, cartItem){
+        let html =``;
+        deliveryOption.forEach((deliveryOption)=> {
+            const today = dayjs();
+            const deliveryDate = today.add(deliveryOption.deliveryDays, 'day');
+            const dateString = deliveryDate.format('YYYY, MMMM DD');
+            const isChecked = deliveryOption.id ===cartItem.deliveryOptionId;
+            const priceString = deliveryOption.priceCent === 0 ? 'FREE' : `$${toolbox.priceAdjust(deliveryOption.priceCent)}`
+            html += `
+                <div class="delivery-type-info-box">
+                    <div class="container" data-delivery-option-id="${deliveryOption.id}" data-product-id="${matchingProduct.id}">
+                        <input type="radio" ${isChecked ? 'checked': ''} name="delivery-option-${matchingProduct.id}" >                        
+                    </div>
+                    <div>
+                        <p>${dateString}</p>
+                        <span class="delivery-type">${priceString} shipping</span>
+                    </div>
+                </div>`;
+        })
+    
+        return html;
+    }
 }
+
+
 
 function displayCheckoutSummary(){
     summaryhtml = `                
@@ -217,47 +271,8 @@ function displayCheckoutSummary(){
 
 
 
-document.querySelectorAll('.js-delete-link').forEach((link) =>{
-    
-    link.addEventListener('click', ()=>{
-        const productId = link.dataset.productId;
-        const containerhtml = document.querySelector(`.js-cart-item-${productId}`);
-        if(cartModule.IsRemove(productId)){
-            containerhtml.remove();
-        }
-        cartModule.removeFromCart(productId);
-
-        updatePrice(cartModule.cart);
-    })
-})
-
-document.querySelectorAll('.js-update-link').forEach((link) =>{
-/**
- *     link.addEventListener('click', ()=>{
-        console.log(link);
-        const productId = link.dataset.productId;
-        const updateHTML = document.querySelector(`.js-update-link-${productId}`);
-        updateHTML.innerHTML = '<input class="quantity-input"type="text"> <span class="save-quantity-link">Save</span>'
-        const input = document.querySelector('.quantity-input');
-        input.focus();
-
-            //need to fix really need to fix please fix this
-            document.querySelector('.save-quantity-link').addEventListener('click', ()=>{
-                console.log("got it");
-                console.log(input.value);
-                cartModule.changeQuantity(productId, input.value);
-    
-                updatePrice(cartModule.cart);
-            })
 
 
-        
-
-        
-    })
- *  */    
-
-})
 
 
 
