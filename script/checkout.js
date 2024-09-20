@@ -7,8 +7,8 @@ import {displayCheckoutItems} from "./checkout/ordersummary.js";
 import {displayCheckoutSummary, updatePrice } from "./checkout/paymentsummary.js";
 
 
-let producthtml =``;
-let summaryhtml =``;
+
+
 
 let headerhtml =`        
         <div class="header">
