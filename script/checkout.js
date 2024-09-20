@@ -101,7 +101,7 @@ function displayCheckoutItems(){
                                         price: ${toolbox.priceAdjust(matchingProduct.price_inCent,2)}$
                                     </div>
                                     <div>
-                                        <span>quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<span class="js-update-link" >Update</span>&nbsp;&nbsp;&nbsp;<span class="js-delete-link" data-product-id="${matchingProduct.id}">Delete</span>
+                                        <span class="item-quantity-${matchingProduct.id}">quantity: ${cartItem.quantity}</span>&nbsp;&nbsp;&nbsp;<span class="js-update-link js-update-link-${matchingProduct.id}" data-product-id="${matchingProduct.id}">Update</span>&nbsp;&nbsp;&nbsp;<span class="js-delete-link" data-product-id="${matchingProduct.id}">Delete</span>
                                     </div>
                                 </div>
                             </div>
@@ -219,7 +219,6 @@ document.querySelectorAll('.js-delete-link').forEach((link) =>{
     link.addEventListener('click', ()=>{
         const productId = link.dataset.productId;
         const containerhtml = document.querySelector(`.js-cart-item-${productId}`);
-        console.log(cartModule.IsRemove(productId));
         if(cartModule.IsRemove(productId)){
             containerhtml.remove();
         }
@@ -228,3 +227,32 @@ document.querySelectorAll('.js-delete-link').forEach((link) =>{
         updatePrice(cartModule.cart);
     })
 })
+
+document.querySelectorAll('.js-update-link').forEach((link) =>{
+    
+    link.addEventListener('click', ()=>{
+        console.log(link);
+        const productId = link.dataset.productId;
+        const updateHTML = document.querySelector(`.js-update-link-${productId}`);
+        updateHTML.innerHTML = '<input class="quantity-input"type="text"> <span class="save-quantity-link">Save</span>'
+        const input = document.querySelector('.quantity-input');
+        input.focus();
+
+            //need to fix really need to fix please fix this
+            document.querySelector('.save-quantity-link').addEventListener('click', ()=>{
+                console.log("got it");
+                console.log(input.value);
+                cartModule.changeQuantity(productId, input.value);
+    
+                updatePrice(cartModule.cart);
+            })
+
+
+        
+
+        
+    })
+})
+
+
+
