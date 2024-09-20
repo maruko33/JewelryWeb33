@@ -93,14 +93,21 @@ export function removeFromCart(productId){
 
 export function IsRemove(productId){
     let result = false;
-    console.log(cart);
     cart.forEach((item)=> {
         if(item.productId === productId){
             
-            if(item.quantity===1){
+            if(item.quantity===1||item.quantity===0){
                 result = true;
             }
         }
     });
     return result;
+}
+
+export function changeQuantity(productId, num){
+    cart.forEach((item)=> {
+        if(item.productId === productId){
+            item.quantity = num;
+        }
+    });
 }
