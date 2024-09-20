@@ -25,7 +25,7 @@ cartModule.cart.forEach((cartItem) => {
     totalItemFee+=cartItem.quantity*(matchingProduct.price_inCent/100);
     //totalshippingfee=
     
-    producthtml += `    <div class="checkout-body-products-cell">
+    producthtml += `    <div class="checkout-body-products-cell js-cart-item-${matchingProduct.id}">
                     <p class="delivery-date">
                         order 1
                     </p>
@@ -154,8 +154,11 @@ document.querySelectorAll('.js-delete-link').forEach((link) =>{
     
     link.addEventListener('click', ()=>{
         const productId = link.dataset.productId;
-        console.log(productId);
+        const containerhtml = document.querySelector(`.js-cart-item-${productId}`);
+        console.log(cartModule.IsRemove(productId));
+        if(cartModule.IsRemove(productId)){
+            containerhtml.remove();
+        }
         cartModule.removeFromCart(productId);
-        console.log(cartModule.cart);
     })
 })
