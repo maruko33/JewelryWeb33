@@ -1,3 +1,4 @@
 export function priceAdjust(priceInCent, decimalNum){
-    return parseFloat((priceInCent/100).toFixed(decimalNum));
+    return parseFloat((Math.round(priceInCent)/100).toFixed(decimalNum));
 }
+
