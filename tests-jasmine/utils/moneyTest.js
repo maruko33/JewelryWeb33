@@ -1,4 +1,4 @@
-import {priceAdjust} from '../script/utils/priceAdjuster.js';
+import {priceAdjust} from '../../script/utils/priceAdjuster.js';
 
 describe('Test suite: priceAdjuster', () => {
     it('converts cent into dollar', () => {
