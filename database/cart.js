@@ -1,22 +1,26 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
+loadFromStorage();
 
-if(!cart){
-    cart =[
-        /**
-         *         {
-            productId: '16985746213',
-            quantity:2,
-            deliveryOptionId:'1'
-        },
-        {
-            productId: '13455231158',
-            quantity:1,
-            deliveryOptionId:'2'
-        }
-         */
-
-    ];
+export function loadFromStorage(){
+    if(!cart){
+        cart =[
+            /**
+             *         {
+                productId: '16985746213',
+                quantity:2,
+                deliveryOptionId:'1'
+            },
+            {
+                productId: '13455231158',
+                quantity:1,
+                deliveryOptionId:'2'
+            }
+             */
+    
+        ];
+    }
 }
+
 
 function saveToStorage(){
     localStorage.setItem('cart', JSON.stringify(cart));
