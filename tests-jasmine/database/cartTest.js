@@ -6,7 +6,7 @@ describe('test suite: addToCart', ()=>{
         spyOn(localStorage,'getItem').and.callFake(()=>{    //spyOn(object, method wanna use)
             return JSON.stringify([{
                 productId: '16985746213',
-                quantity:2,
+                quantity:1,
                 deliveryOptionId:'1'
             }]);                      //in {} we overwrite origin method
                                                              //we overwrite getItem and return a cart with no item([])
@@ -34,4 +34,26 @@ describe('test suite: addToCart', ()=>{
         expect(cart.cart[0].productId).toEqual('16985746213');
         expect(cart.cart[0].quantity).toEqual(1);
     });
+
+    it('delete a exist product from cart', ()=>{
+        spyOn(localStorage, 'setItem');
+        spyOn(localStorage,'getItem').and.callFake(()=>{    
+            return JSON.stringify([{
+                productId: '16985746213',
+                quantity:2,
+                deliveryOptionId:'1'
+            }]);                      
+        });
+        cart.loadFromStorage();
+        console.log(cart.cart);
+        cart.removeFromCart('16985746213');
+        cart.loadFromStorage();
+        console.log(cart.cart);
+
+        expect(cart.cart.length).toEqual(1);
+        expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+        expect(cart.cart[0].productId).toEqual('16985746213');
+        expect(cart.cart[0].quantity).toEqual(1);
+
+    })
 })
